@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Grade Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.2/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script>
+
+  <style>
+    :root {
+      --cyan: #00ffff;
+      --pink: #ff69b4;
+      --purple: #8000ff;
+    }
+
+    .navbar {
+      background-color: var(--purple);
+      padding: 15px 30px;
+      border-radius: 0;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: var(--pink);
+      transform: scale(1.1);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--cyan), var(--pink), var(--purple));
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      color: white;
+      padding: 120px 20px 20px;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 1100px;
+      background: rgba(50, 50, 50, 0.7);
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0 0 30px rgba(128, 0, 255, 0.5);
+    }
+
+    h1 {
+      color: var(--cyan);
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: bold;
+      text-shadow: 0 0 5px var(--pink);
+    }
+
+    h2 {
+      color: var(--pink);
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .form-control {
+      margin-bottom: 15px;
+      border: 1px solid var(--purple);
+      background-color: rgba(255,255,255,0.9);
+      color: black;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 0.25rem rgba(0, 255, 255, 0.4);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      border: none;
+      width: 50%;
+      padding: 12px;
+      margin: 30px auto 0;
+      display: block;
+      font-weight: bold;
+      color: white;
+      transition: 0.3s;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      transform: scale(1.05);
+    }
+
+    .input-group-text {
+      background-color: var(--purple);
+      color: white;
+      border: 1px solid var(--purple);
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    .info-section, .grades-section {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      flex: 1;
+      min-width: 350px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .grades-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 30px;
+    }
+
+    #student_info, #summary, #output {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    #output {
+      font-size: 1.3rem;
+      color: var(--cyan);
+      font-weight: bold;
+      padding: 15px;
+      background-color: rgba(0, 255, 255, 0.15);
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">GWA Calculator</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="club_info.html">Clubs</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Student Grade Calculator</h1>
+
+    <div class="row">
+      <div class="info-section col-md-6">
+        <h2>Personal Information</h2>
+        <div class="input-group">
+          <span class="input-group-text">First Name</span>
+          <input type="text" class="form-control" id="first_name" placeholder="Ex. Nazuna" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Last Name</span>
+          <input type="text" class="form-control" id="last_name" placeholder="Ex. Nanakusa" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Institution</span>
+          <input type="text" class="form-control" id="institution" placeholder="Ex. OBMC" required>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Grade & Section</span>
+          <input type="text" class="form-control" id="grade_section" placeholder="Ex. 9 - A" required>
+        </div>
+      </div>
+
+      <div class="grades-section col-md-6">
+        <h2>Subject Grades</h2>
+        <div class="grades-grid">
+          <div class="input-group">
+            <span class="input-group-text">Science</span>
+            <input type="number" class="form-control" id="science" placeholder="60-100" min="60" max="100" required>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">Math</span>
+            <input type="number" class="form-control" id="math" placeholder="60-100" min="60" max="100" required>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">English</span>
+            <input type="number" class="form-control" id="english" placeholder="60-100" min="60" max="100" required>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">Filipino</span>
+            <input type="number" class="form-control" id="filipino" placeholder="60-100" min="60" max="100" required>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">SS</span>
+            <input type="number" class="form-control" id="ss" placeholder="60-100" min="60" max="100" required>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">PE</span>
+            <input type="number" class="form-control" id="pe" placeholder="60-100" min="60" max="100" required>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" py-click="general_weighted_average">Calculate GWA</button>
+
+    <div id="student_info"></div>
+    <pre id="summary"></pre>
+    <div id="output"></div>
+  </div>
+
+  <py-script>
+from js import document
+from pyscript import display
+
+def general_weighted_average(e):
+    document.getElementById('student_info').innerHTML = ''
+    document.getElementById('summary').innerHTML = ''
+    document.getElementById('output').innerHTML = ''
+
+    subjects = ['Science', 'Math', 'English', 'Filipino', 'SS', 'PE']
+    ids = ['science', 'math', 'english', 'filipino', 'ss', 'pe']
+
+    first_name = document.getElementById('first_name').value.strip()
+    last_name = document.getElementById('last_name').value.strip()
+    institution = document.getElementById('institution').value.strip()
+    grade_section = document.getElementById('grade_section').value.strip()
+
+    if not first_name or not last_name or not institution or not grade_section:
+        display("Please fill in all personal information fields.", target="output")
+        return
+
+    grades = []
+    for i in ids:
+        value = document.getElementById(i).value.strip()
+        if not value:
+            display("Please fill in all grade fields before calculating.", target="output")
+            return
+        try:
+            grade = float(value)
+        except:
+            display("Invalid input: please enter only numbers.", target="output")
+            return
+        if grade < 60 or grade > 100:
+            display("Error: Grades must be between 60 and 100 only.", target="output")
+            return
+        grades.append(grade)
+
+    weights = {'Science': 2.0, 'Math': 2.0, 'English': 2.0, 'Filipino': 1.0, 'SS': 1.0, 'PE': 0.5}
+    weighted_sum = sum(g * weights[sub] for g, sub in zip(grades, subjects))
+    gwa = weighted_sum / sum(weights.values())
+
+    display(f"Name: {first_name} {last_name}", target="student_info")
+    display(f"Institution: {institution}", target="student_info")
+    display(f"Grade & Section: {grade_section}", target="student_info")
+    display(f"GWA: {gwa:.2f}", target='output')
+  </py-script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

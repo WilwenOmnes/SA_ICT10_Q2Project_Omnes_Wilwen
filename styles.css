@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+
+  background:
+    linear-gradient(
+      rgba(128, 0, 255, 0.45),
+      rgba(0, 200, 255, 0.45),
+      rgba(255, 105, 180, 0.45)
+    ),
+    url("HS.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.info-box {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-left: 6px solid #7f00ff;
+  border-radius: 8px;
+  color: #2e003e;
+  line-height: 1.6;
+
+  opacity: 0.5;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  width: 80%;
+  max-width: 900px;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.55);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+h1 {
+  text-align: center;
+  color: #6a00aa;
+}
+
+.divider {
+  height: 3px;
+  background: linear-gradient(to right, #7f00ff, #00cfff, #ff69b4);
+  margin-bottom: 25px;
+  border-radius: 3px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #4a0066;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #b266d6;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #7f00ff, #00cfff, #ff69b4);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.info-box {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-left: 6px solid #7f00ff;
+  border-radius: 8px;
+  color: #2e003e;
+  line-height: 1.6;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+.info-box {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-left: 6px solid #7f00ff;
+  border-radius: 8px;
+  color: #2e003e;
+  line-height: 1.6;
+
+  opacity: 0.5;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
